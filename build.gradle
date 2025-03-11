@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass = 'rd.jfxexample.MainWindow'
+    mainClass = 'rd.jfxexample.gui.MainWindow'
 }
 
 javafx {
