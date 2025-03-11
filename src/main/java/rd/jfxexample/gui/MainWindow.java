@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,8 +18,12 @@ public class MainWindow extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
+
         VBox vBox = new VBox(5);
         vBox.setAlignment(Pos.CENTER);
+        vBox.setFillWidth(false);
+
+
         Label label = new Label("Jo! ");
         vBox.getChildren().add(label);
 
@@ -29,6 +34,10 @@ public class MainWindow extends Application  {
         XButton buttonExit = new XButton("Exit");
         vBox.getChildren().add(buttonExit);
         buttonExit.setOnAction(event -> Platform.exit());
+
+        TextField textField = new TextField("Set title of this window here");
+        vBox.getChildren().add(textField);
+        textField.textProperty().addListener((observable, oldValue, newValue) -> primaryStage.setTitle(newValue));
 
         pane.setCenter(vBox);
         Scene scene = new Scene(pane, WIDTH, HEIGHT);
