@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rd.jfxexample.gui.MainController">
+   <children>
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+         <children>
+            <StackPane>
+               <children>
+                  <Label alignment="CENTER" text="Documents" />
+               </children>
+            </StackPane>
+            <HBox fillHeight="false" prefHeight="5.0" prefWidth="300.0" spacing="5.0" VBox.vgrow="NEVER">
+               <children>
+                  <Button mnemonicParsing="false" text="Add" />
+                  <Button mnemonicParsing="false" text="Remove" />
+               </children>
+            </HBox>
+            <ListView id="docList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding></VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+         <children>
+            <StackPane>
+               <children>
+                  <Label text="Selected Document" />
+               </children>
+            </StackPane>
+            <GridPane VBox.vgrow="SOMETIMES">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField id="docName" prefHeight="25.0" prefWidth="310.0" text="untitled" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label text="Name" />
+                  <Label layoutX="10.0" layoutY="17.0" text="Content" GridPane.rowIndex="2" />
+                  <TextArea id="docContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+               </children>
+            </GridPane>
+         </children></VBox>
+   </children>
+</HBox>
