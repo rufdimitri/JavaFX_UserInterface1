@@ -9,4 +9,7 @@ public class Context {
             documentService = new DocumentService(this);
     }
 
+    public DocumentService getDocumentService() {
+        return documentService;
+    }
 }
