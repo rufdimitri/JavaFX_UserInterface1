@@ -6,7 +6,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rd.jfxexample.gui.MainController">
    <children>
-      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+      <VBox fx:id="vboxLeft" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
          <children>
             <StackPane>
                <children>
@@ -15,11 +15,11 @@
             </StackPane>
             <HBox fillHeight="false" prefHeight="5.0" prefWidth="300.0" spacing="5.0" VBox.vgrow="NEVER">
                <children>
-                  <Button mnemonicParsing="false" text="Add" />
-                  <Button mnemonicParsing="false" text="Remove" />
+                  <Button mnemonicParsing="false" onAction="#btAddAction" text="Add" />
+                  <Button mnemonicParsing="false" onAction="#btRemoveAction" text="Remove" />
                </children>
             </HBox>
-            <ListView id="docList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="docList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
          </children>
          <HBox.margin>
             <Insets />
@@ -27,7 +27,7 @@
          <padding>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding></VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <VBox fx:id="vboxRight" prefHeight="200.0" prefWidth="100.0" visible="false" HBox.hgrow="ALWAYS">
          <padding>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
@@ -49,10 +49,10 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField id="docName" prefHeight="25.0" prefWidth="310.0" text="untitled" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="docName" prefHeight="25.0" prefWidth="310.0" text="untitled" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                   <Label text="Name" />
                   <Label layoutX="10.0" layoutY="17.0" text="Content" GridPane.rowIndex="2" />
-                  <TextArea id="docContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+                  <TextArea fx:id="docContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
                </children>
             </GridPane>
          </children></VBox>
