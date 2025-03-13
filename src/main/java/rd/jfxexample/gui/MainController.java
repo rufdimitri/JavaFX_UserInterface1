@@ -1,5 +1,6 @@
 package rd.jfxexample.gui;
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -30,12 +31,12 @@ public class MainController {
         //do component initialization here
         docList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         docList.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-
-
-            Document newDocument = context.getDocumentService().getDocumentList().get(newValue.intValue());
-            docName.setText(newDocument.getName());
-            docContent.setText(newDocument.getContent());
+            updateDocumentUI(newValue.intValue());
         });
+        docList.getItems().addListener((ListChangeListener) c -> {
+            updateDocumentUI(docList.getSelectionModel().getSelectedIndex());
+        });
+
 
         docName.textProperty().addListener((observable, oldValue, newValue) -> {
             Document document = (Document)docList.getItems().get(docList.getSelectionModel().getSelectedIndex());
@@ -43,11 +44,18 @@ public class MainController {
             docList.refresh();
         });
 
-        //TODO save doc on every change
-        //docName.textProperty().addListener((observable, oldValue, newValue) -> );
+        docName.textProperty().addListener((observable, oldValue, newValue) -> {
+            int selected = docList.getSelectionModel().getSelectedIndex();
+            Document document = context.getDocumentService().getDocumentList().get(selected);
+            document.setName(docName.getText());
+            docContent.setText(document.getContent());
+        });
 
-        //TODO save doc on every change
-        //docContent.TextProperty().addListener...
+        docContent.textProperty().addListener((observable, oldValue, newValue) -> {
+            int selected = docList.getSelectionModel().getSelectedIndex();
+            Document document = context.getDocumentService().getDocumentList().get(selected);
+            document.setContent(docContent.getText());
+        });
     }
 
     public void setContext(Context context) {
@@ -65,7 +73,6 @@ public class MainController {
 
     @FXML
     public void btAddAction() {
-        vboxRight.setVisible(true);
         Document document = new Document("untitled", "");
         docList.getItems().add(document);
         context.getDocumentService().getDocumentList().add(document);
@@ -74,10 +81,20 @@ public class MainController {
     @FXML
     public void btRemoveAction() {
         int selectedIndex = docList.getSelectionModel().getSelectedIndex();
-        System.out.println(selectedIndex);
-        docList.getItems().remove(selectedIndex);
         context.getDocumentService().getDocumentList().remove(selectedIndex);
-        System.out.println();
+        docList.getItems().remove(selectedIndex);
+    }
+
+    private void updateDocumentUI(int listSelectedIndex) {
+        if (listSelectedIndex == -1) {
+            vboxRight.setVisible(false);
+            return;
+        }
+        vboxRight.setVisible(true);
+
+        Document document = context.getDocumentService().getDocumentList().get(listSelectedIndex);
+        docName.setText(document.getName());
+        docContent.setText(document.getContent());
     }
 
 }
